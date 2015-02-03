@@ -2,7 +2,11 @@
 
 ## Gulp
 ### Setup
-Open /gulp/config.js and fill in variables with accurate information about files/folder structure. This should already work off the bat with this template. Different features and tasks can be enabled or disabled here. Unless adding a new task, the config file is the only file that should be changed with each project. If adding a new task/plugin which proves useful and reusable, consider setting up properly in the config file and saving to this repository.
+Navigate to template folder and run 'sudo npm install'. If this fails, delete node_modules folder and run 'sudo npm cache clean', then try again.
+
+Open /gulp/config.js and fill in variables with accurate information about files/folder structure (This should already work off the bat with this template.) Different features and tasks can be enabled or disabled here. 
+
+Unless adding a new task, the config file is the only file that should be changed with each project. If adding a new task/plugin which proves useful and reusable, consider setting up properly in the config file and saving to this repository.
 
 ### Running
 Navigate to templates folder and run 'gulp'
