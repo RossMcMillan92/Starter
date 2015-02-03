@@ -1,0 +1,35 @@
+$palette--black 				:#000;
+
+$palette--grey-light 			:#eeeeee;
+$palette--grey-med 				:#bdbdbd;
+$palette--grey-dark 			:#1b1a1a;
+
+/* names allow us to loop and create class names, e.g. .card--alpha, .ui--beta
+------------------------ */
+$palette--names 				:(
+									'alpha',
+									'beta',
+									'gamma',
+									'delta'
+								);
+
+$palette--primary 				:(
+									#fb5354, // Red 	- Alpha	- 1
+									#ffcb47, // Yellow 	- Beta 	- 2
+									#54dd5f, // Green 	- Gamma - 3
+									#00bcde // 	Blue 	- Delta - 4
+								); 
+
+$palette--social 				:(
+									#3b5998, // Facebook 	- 1
+									#55acee, // Twitter 	- 2
+									#dd4b39, // Google+ 	- 3
+									#0976b4, // LinkedIn 	- 4
+									#e52d27, // Youtube 	- 5
+									#cc2127  // Pinterest 	- 5
+								);
+
+$palette--body-bg 				: #fff;
+$palette--body-text 			: #010103;
+$palette--body-emphasised 		:nth($palette--primary, 1);
+

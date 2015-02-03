@@ -1,0 +1,10 @@
+html{
+	font-family: $base-font-family;
+	font-size: $base-font-size;
+	line-height: $base-line-height;
+}
+
+body{
+    background-color: $palette--body-bg;
+    -webkit-font-smoothing: antialiased;
+}

@@ -1,0 +1,13 @@
+%expandable{
+	overflow: hidden;
+	max-height: 0;
+	margin: 0;
+
+	transition: max-height .2s ease-in-out, margin 0s ease .2s;
+
+	&.is-expanded{
+		max-height: 1000px;
+		margin: 1em 0;
+		transition: max-height .2s ease-in-out;
+	}
+}

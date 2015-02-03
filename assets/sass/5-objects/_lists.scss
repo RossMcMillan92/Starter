@@ -1,0 +1,38 @@
+/* Lists
+------------------------ */
+.cleanlist{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.list-hor{
+    @extend .cleanlist;
+
+    li{
+        display: inline-block;
+    }
+}
+
+.list-hor--separated{
+    @extend .list-hor;
+
+    li{
+        position: relative;
+        padding: 0;
+
+        &:after{
+            position: relative;
+            display: inline-block;
+            content: "|";
+            left: -1px;
+            color: #a9a9a9;
+        }
+
+        &:last-child{
+            &:after{
+                display: none;
+            }
+        }
+    }
+}

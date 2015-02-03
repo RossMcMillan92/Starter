@@ -1,0 +1,1825 @@
+/* ----------------------------------------------
+
+	Based on ITCSS by Harry Roberts
+	https://speakerdeck.com/dafed/managing-css-projects-with-itcss
+
+	1. Settings 	- Variables, config.
+	2. Tools 		- Mixins, functions
+	3. Generic 		- Normalize, reset, * {}
+	4. Base 		- Unclassed HTML rules
+	5. Objects 		- Cosemetic-free design patterns
+	6. Components 	- Chunks of UI
+	7. Trumps 		- Helpers and overrides
+
+---------------------------------------------- */
+
+/* ----------------------------------------------
+	1. Settings
+---------------------------------------------- */
+
+/* names allow us to loop and create class names, e.g. .card--alpha, .ui--beta
+------------------------ */
+
+/* ----------------------------------------------
+	2. Tools
+---------------------------------------------- */
+
+/* Mixins
+--------------------------------------------------- */
+
+/* ----------------------------------------------
+	3. Generic
+---------------------------------------------- */
+
+/* normalize.css v3.0.2 | MIT License | git.io/normalize */
+
+/**
+ * 1. Set default font family to sans-serif.
+ * 2. Prevent iOS text size adjust after orientation change, without disabling
+ *    user zoom.
+ */
+
+html {
+	font-family: sans-serif; /* 1 */
+	-ms-text-size-adjust: 100%; /* 2 */
+	-webkit-text-size-adjust: 100%; /* 2 */
+}
+
+/**
+ * Remove default margin.
+ */
+
+body {
+	margin: 0;
+}
+
+/* HTML5 display definitions
+   ========================================================================== */
+
+/**
+ * Correct `block` display not defined for any HTML5 element in IE 8/9.
+ * Correct `block` display not defined for `details` or `summary` in IE 10/11
+ * and Firefox.
+ * Correct `block` display not defined for `main` in IE 11.
+ */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+	display: block;
+}
+
+/**
+ * 1. Correct `inline-block` display not defined in IE 8/9.
+ * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
+ */
+
+audio,
+canvas,
+progress,
+video {
+	display: inline-block; /* 1 */
+	vertical-align: baseline; /* 2 */
+}
+
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+
+audio:not([controls]) {
+	display: none;
+	height: 0;
+}
+
+/**
+ * Address `[hidden]` styling not present in IE 8/9/10.
+ * Hide the `template` element in IE 8/9/11, Safari, and Firefox < 22.
+ */
+
+[hidden],
+template {
+	display: none;
+}
+
+/* Links
+   ========================================================================== */
+
+/**
+ * Remove the gray background color from active links in IE 10.
+ */
+
+a {
+	background-color: transparent;
+}
+
+/**
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+
+a:active,
+a:hover {
+	outline: 0;
+}
+
+/* Text-level semantics
+   ========================================================================== */
+
+/**
+ * Address styling not present in IE 8/9/10/11, Safari, and Chrome.
+ */
+
+abbr[title] {
+	border-bottom: 1px dotted;
+}
+
+/**
+ * Address style set to `bolder` in Firefox 4+, Safari, and Chrome.
+ */
+
+b,
+strong {
+	font-weight: bold;
+}
+
+/**
+ * Address styling not present in Safari and Chrome.
+ */
+
+dfn {
+	font-style: italic;
+}
+
+/**
+ * Address variable `h1` font-size and margin within `section` and `article`
+ * contexts in Firefox 4+, Safari, and Chrome.
+ */
+
+h1 {
+	font-size: 2em;
+	margin: 0.67em 0;
+}
+
+/**
+ * Address styling not present in IE 8/9.
+ */
+
+mark {
+	background: #ff0;
+	color: #000;
+}
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+
+small {
+	font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+
+sub,
+sup {
+	font-size: 75%;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+
+sup {
+	top: -0.5em;
+}
+
+sub {
+	bottom: -0.25em;
+}
+
+/* Embedded content
+   ========================================================================== */
+
+/**
+ * Remove border when inside `a` element in IE 8/9/10.
+ */
+
+img {
+	border: 0;
+}
+
+/**
+ * Correct overflow not hidden in IE 9/10/11.
+ */
+
+svg:not(:root) {
+	overflow: hidden;
+}
+
+/* Grouping content
+   ========================================================================== */
+
+/**
+ * Address margin not present in IE 8/9 and Safari.
+ */
+
+figure {
+	margin: 1em 40px;
+}
+
+/**
+ * Address differences between Firefox and other browsers.
+ */
+
+hr {
+	box-sizing: content-box;
+	height: 0;
+}
+
+/**
+ * Contain overflow in all browsers.
+ */
+
+pre {
+	overflow: auto;
+}
+
+/**
+ * Address odd `em`-unit font size rendering in all browsers.
+ */
+
+code,
+kbd,
+pre,
+samp {
+	font-family: monospace, monospace;
+	font-size: 1em;
+}
+
+/* Forms
+   ========================================================================== */
+
+/**
+ * Known limitation: by default, Chrome and Safari on OS X allow very limited
+ * styling of `select`, unless a `border` property is set.
+ */
+
+/**
+ * 1. Correct color not being inherited.
+ *    Known issue: affects color of disabled elements.
+ * 2. Correct font properties not being inherited.
+ * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
+ */
+
+button,
+input,
+optgroup,
+select,
+textarea {
+	color: inherit; /* 1 */
+	font: inherit; /* 2 */
+	margin: 0; /* 3 */
+}
+
+/**
+ * Address `overflow` set to `hidden` in IE 8/9/10/11.
+ */
+
+button {
+	overflow: visible;
+}
+
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
+ * Correct `select` style inheritance in Firefox.
+ */
+
+button,
+select {
+	text-transform: none;
+}
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ */
+
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+	-webkit-appearance: button; /* 2 */
+	cursor: pointer; /* 3 */
+}
+
+/**
+ * Re-set default cursor for disabled elements.
+ */
+
+button[disabled],
+html input[disabled] {
+	cursor: default;
+}
+
+/**
+ * Remove inner padding and border in Firefox 4+.
+ */
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+	border: 0;
+	padding: 0;
+}
+
+/**
+ * Address Firefox 4+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+
+input {
+	line-height: normal;
+}
+
+/**
+ * It's recommended that you don't attempt to style these elements.
+ * Firefox's implementation doesn't respect box-sizing, padding, or width.
+ *
+ * 1. Address box sizing set to `content-box` in IE 8/9/10.
+ * 2. Remove excess padding in IE 8/9/10.
+ */
+
+input[type="checkbox"],
+input[type="radio"] {
+	box-sizing: border-box; /* 1 */
+	padding: 0; /* 2 */
+}
+
+/**
+ * Fix the cursor style for Chrome's increment/decrement buttons. For certain
+ * `font-size` values of the `input`, it causes the cursor style of the
+ * decrement button to change from `default` to `text`.
+ */
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+	height: auto;
+}
+
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari and Chrome
+ *    (include `-moz` to future-proof).
+ */
+
+input[type="search"] {
+	-webkit-appearance: textfield; /* 1 */ /* 2 */
+	box-sizing: content-box;
+}
+
+/**
+ * Remove inner padding and search cancel button in Safari and Chrome on OS X.
+ * Safari (but not Chrome) clips the cancel button when the search input has
+ * padding (and `textfield` appearance).
+ */
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+	-webkit-appearance: none;
+}
+
+/**
+ * Define consistent border, margin, and padding.
+ */
+
+fieldset {
+	border: 1px solid #c0c0c0;
+	margin: 0 2px;
+	padding: 0.35em 0.625em 0.75em;
+}
+
+/**
+ * 1. Correct `color` not being inherited in IE 8/9/10/11.
+ * 2. Remove padding so people aren't caught out if they zero out fieldsets.
+ */
+
+legend {
+	border: 0; /* 1 */
+	padding: 0; /* 2 */
+}
+
+/**
+ * Remove default vertical scrollbar in IE 8/9/10/11.
+ */
+
+textarea {
+	overflow: auto;
+}
+
+/**
+ * Don't inherit the `font-weight` (applied by a rule above).
+ * NOTE: the default cannot safely be changed in Chrome and Safari on OS X.
+ */
+
+optgroup {
+	font-weight: bold;
+}
+
+/* Tables
+   ========================================================================== */
+
+/**
+ * Remove most spacing between table cells.
+ */
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+td,
+th {
+	padding: 0;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+/*------------------------------------*\
+    $CLEARFIX
+\*------------------------------------*/
+
+/**
+ * Micro clearfix, as per: css-101.org/articles/clearfix/latest-new-clearfix-so-far.php
+ * Extend the clearfix class with Sass to avoid the `.cf` class appearing over
+ * and over in your markup.
+ */
+
+.cf:after,
+.media:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+/* endif */
+
+/* ----------------------------------------------
+	4. Base
+---------------------------------------------- */
+
+html {
+	font-family: "Regular", sans-serif;
+	font-size: 15px;
+	line-height: 1.4;
+}
+
+body {
+	background-color: #fff;
+	-webkit-font-smoothing: antialiased;
+}
+
+h1,
+.alpha {
+	font-size: 37px;
+}
+
+h2,
+.beta {
+	font-size: 28px;
+}
+
+h3,
+.gamma {
+	font-size: 23px;
+}
+
+h4,
+.delta {
+	font-size: 17px;
+}
+
+h5,
+.epsilon {
+	font-size: 15px;
+}
+
+h6,
+.zeta {
+	font-size: 13px;
+}
+
+.title--primary {
+	text-transform: uppercase;
+}
+
+.title--secondary {
+	text-transform: uppercase;
+}
+
+/**
+ * Where `margin-bottom` is concerned, this value will be the same as the
+ * base line-height. This allows us to keep a consistent vertical rhythm.
+ * As per: csswizardry.com/2012/06/single-direction-margin-declarations
+ */
+
+/**
+ * Base elements
+ */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hgroup,
+ul,
+ol,
+dl,
+blockquote,
+p,
+address,
+table,
+fieldset,
+figure,
+pre,
+.mb1,
+.media {
+	margin-bottom: 19px;
+	margin-bottom: 1.33333rem;
+}
+
+/**
+ * Doubled up `margin-bottom` helper class.
+ */
+
+.landmark,
+.mb2 {
+	margin-bottom: 40px;
+	margin-bottom: 2.66667rem;
+}
+
+/**
+ * `hr` elements only take up a few pixels, so we need to give them special
+ * treatment regarding vertical rhythm.
+ */
+
+hr {
+	margin-bottom: 18px;
+	margin-bottom: 1.2rem;
+}
+
+/**
+ * Where `margin-left` is concerned we want to try and indent certain elements
+ * by a consistent amount. Define that amount once, here.
+ */
+
+ul,
+ol,
+dd {
+	margin-left: 40px;
+	margin-left: 2.66667rem;
+}
+
+@font-face {
+	font-family: 'Regular';
+	src: url("../fonts/Regular.eot");
+	src: url("../fonts/Regular.eot#iefix") format("embedded-opentype"), url("../fonts/Regular.woff") format("woff"), url("../fonts/Regular.ttf") format("truetype"), url("../fonts/Regular.svg#regular") format("svg");
+	font-weight: 400;
+	font-style: normal;
+}
+
+.title--secondary {
+	font-family: "Regular", sans-serif;
+	font-weight: 400;
+}
+
+.title--primary {
+	font-family: "Regular", sans-serif;
+	font-weight: 800;
+}
+
+@font-face {
+	font-family: 'icomoon';
+	src: url("../fonts/icomoon.eot");
+	src: url("../fonts/icomoon.eot#iefix") format("embedded-opentype"), url("../fonts/icomoon.woff") format("woff"), url("../fonts/icomoon.ttf") format("truetype"), url("../fonts/icomoon.svg#icomoon") format("svg");
+	font-weight: normal;
+	font-style: normal;
+}
+
+.preload .icon-search:after,
+.preload .icon-menu:after,
+.preload .icon-youtube:after,
+.preload .icon-facebook:after,
+.preload .icon-twitter:after,
+.preload .icon-mail:after,
+.preload .icon-arrow-left:after,
+.preload .icon-arrow-down:after,
+.preload .icon-arrow-up:after,
+.preload .icon-arrow-right:after,
+.preload .icon-instagram:after {
+	display: none;
+}
+
+.icon--search,
+.icon-search:after,
+.icon--menu,
+.icon-menu:after,
+.icon--youtube,
+.icon-youtube:after,
+.icon--facebook,
+.icon-facebook:after,
+.icon--twitter,
+.icon-twitter:after,
+.icon--mail,
+.icon-mail:after,
+.icon--arrow-left,
+.icon-arrow-left:after,
+.icon--arrow-down,
+.icon-arrow-down:after,
+.icon--arrow-up,
+.icon-arrow-up:after,
+.icon--arrow-right,
+.icon-arrow-right:after,
+.icon--instagram,
+.icon-instagram:after {
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	line-height: 1;
+	-moz-osx-font-smoothing: grayscale;
+	position: relative;
+	display: inline-block;
+	line-height: 1;
+	font-family: "icomoon";
+	vertical-align: baseline;
+	left: 0;
+}
+
+/* Icons
+    This generates icon--name, icon-name.
+    icon--name is the core content. Should be extended by other classes.
+    icon-name uses :after and so can be insert in the content e.g. <span class="icon-name"></span>
+------------------------ */
+
+.icon--search,
+.icon-search:after {
+	content: "";
+}
+
+.icon--menu,
+.icon-menu:after {
+	content: "";
+}
+
+.icon--youtube,
+.icon-youtube:after {
+	content: "";
+}
+
+.icon--facebook,
+.icon-facebook:after {
+	content: "";
+}
+
+.icon--twitter,
+.icon-twitter:after {
+	content: "";
+}
+
+.icon--mail,
+.icon-mail:after {
+	content: "";
+}
+
+.icon--arrow-left,
+.icon-arrow-left:after {
+	content: "";
+}
+
+.icon--arrow-down,
+.icon-arrow-down:after {
+	content: "";
+}
+
+.icon--arrow-up,
+.icon-arrow-up:after {
+	content: "";
+}
+
+.icon--arrow-right,
+.icon-arrow-right:after {
+	content: "";
+}
+
+.icon--instagram,
+.icon-instagram:after {
+	content: "";
+}
+
+/* ----------------------------------------------
+	5. Objects
+---------------------------------------------- */
+
+.grid {
+	list-style: none; /* [1] */
+	margin: 0; /* [2] */
+	padding: 0; /* [2] */
+	margin-left: -20px; /* [3] */
+}
+
+.grid__item {
+	display: inline-block; /* [1] */
+	padding-left: 20px; /* [2] */
+	vertical-align: top; /* [3] */
+	width: 100%; /* [4] */ /* [5] */ /* [5] */
+	box-sizing: border-box; /* [5] */
+}
+
+.grid--rev {
+	direction: rtl;
+	text-align: left;
+}
+
+.grid--rev > .grid__item {
+	direction: ltr;
+	text-align: left;
+}
+
+.grid--full {
+	margin-left: 0;
+}
+
+.grid--full > .grid__item {
+	padding-left: 0;
+}
+
+.grid--right {
+	text-align: right;
+}
+
+.grid--right > .grid__item {
+	text-align: left;
+}
+
+.grid--center {
+	text-align: center;
+}
+
+.grid--center > .grid__item {
+	text-align: left;
+}
+
+.grid--middle > .grid__item {
+	vertical-align: middle;
+}
+
+.grid--bottom > .grid__item {
+	vertical-align: bottom;
+}
+
+.grid--narrow {
+	margin-left: -10px;
+}
+
+.grid--narrow > .grid__item {
+	padding-left: 10px;
+}
+
+.grid--wide {
+	margin-left: -40px;
+}
+
+.grid--wide > .grid__item {
+	padding-left: 40px;
+}
+
+.w-auto {
+	width: auto;
+}
+
+.one-whole {
+	width: 100%;
+}
+
+.one-half {
+	width: 50%;
+}
+
+.one-third {
+	width: 33.333%;
+}
+
+.two-thirds {
+	width: 66.666%;
+}
+
+.one-quarter {
+	width: 25%;
+}
+
+.three-quarters {
+	width: 75%;
+}
+
+.one-fifth {
+	width: 20%;
+}
+
+.two-fifths {
+	width: 40%;
+}
+
+.three-fifths {
+	width: 60%;
+}
+
+.four-fifths {
+	width: 80%;
+}
+
+.one-sixth {
+	width: 16.666%;
+}
+
+.five-sixths {
+	width: 83.333%;
+}
+
+.one-seventh {
+	width: 14.28571%;
+}
+
+.one-eighth {
+	width: 12.5%;
+}
+
+.three-eighths {
+	width: 37.5%;
+}
+
+.five-eighths {
+	width: 62.5%;
+}
+
+.seven-eighths {
+	width: 87.5%;
+}
+
+.one-ninth {
+	width: 11.11111%;
+}
+
+.one-tenth {
+	width: 10%;
+}
+
+.three-tenths {
+	width: 30%;
+}
+
+.seven-tenths {
+	width: 70%;
+}
+
+.nine-tenths {
+	width: 90%;
+}
+
+.one-twelfth {
+	width: 8.333%;
+}
+
+.five-twelfths {
+	width: 41.666%;
+}
+
+.seven-twelfths {
+	width: 58.333%;
+}
+
+.eleven-twelfths {
+	width: 91.666%;
+}
+
+.hide {
+	display: none !important;
+}
+
+/* Lists
+------------------------ */
+
+.cleanlist,
+.list-hor,
+.list-hor--separated {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.list-hor li,
+.list-hor--separated li {
+	display: inline-block;
+}
+
+.list-hor--separated li {
+	position: relative;
+	padding: 0;
+}
+
+.list-hor--separated li:after {
+	position: relative;
+	display: inline-block;
+	content: "|";
+	left: -1px;
+	color: #a9a9a9;
+}
+
+.list-hor--separated li:last-child:after {
+	display: none;
+}
+
+/*------------------------------------*\
+    $MEDIA
+\*------------------------------------*/
+
+/**
+ * Place any image- and text-like content side-by-side, as per:
+ * stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code
+ * E.g.:
+ *
+   <div class=media>
+       <img src=http://placekitten.com/200/300 alt="" class=media__img>
+       <p class=media__body>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+       sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+   </div>
+ *
+ * Demo: jsfiddle.net/inuitcss/cf4Qs
+ *
+ */
+
+.media {
+	display: block;
+}
+
+.media__img {
+	float: left;
+	margin-right: 19px;
+	margin-right: 1.33333rem;
+}
+
+/**
+ * Reversed image location (right instead of left).
+ */
+
+.media__img--rev {
+	float: right;
+	margin-left: 19px;
+	margin-left: 1.33333rem;
+}
+
+.media__img img,
+.media__img--rev img {
+	display: block;
+}
+
+.media__body {
+	overflow: hidden;
+}
+
+.media__body,
+.media__body > :last-child {
+	margin-bottom: 0;
+}
+
+.ellipsis {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+/* ----------------------------------------------
+	6. Components
+---------------------------------------------- */
+
+/* ----------------------------------------------
+	7-trumps
+---------------------------------------------- */
+
+.rel {
+	position: relative !important;
+}
+
+.w-auto {
+	width: auto !important;
+}
+
+.disabled {
+	display: none !important;
+}
+
+.mb0 {
+	margin-bottom: 0 !important;
+}
+
+@media only screen and (min-width: 601px) and (max-width: 1023px) {
+
+.lap--one-whole {
+	width: 100%;
+}
+
+.lap--one-half {
+	width: 50%;
+}
+
+.lap--one-third {
+	width: 33.333%;
+}
+
+.lap--two-thirds {
+	width: 66.666%;
+}
+
+.lap--one-quarter {
+	width: 25%;
+}
+
+.lap--three-quarters {
+	width: 75%;
+}
+
+.lap--one-fifth {
+	width: 20%;
+}
+
+.lap--two-fifths {
+	width: 40%;
+}
+
+.lap--three-fifths {
+	width: 60%;
+}
+
+.lap--four-fifths {
+	width: 80%;
+}
+
+.lap--one-sixth {
+	width: 16.666%;
+}
+
+.lap--five-sixths {
+	width: 83.333%;
+}
+
+.lap--one-seventh {
+	width: 14.28571%;
+}
+
+.lap--one-eighth {
+	width: 12.5%;
+}
+
+.lap--three-eighths {
+	width: 37.5%;
+}
+
+.lap--five-eighths {
+	width: 62.5%;
+}
+
+.lap--seven-eighths {
+	width: 87.5%;
+}
+
+.lap--one-ninth {
+	width: 11.11111%;
+}
+
+.lap--one-tenth {
+	width: 10%;
+}
+
+.lap--three-tenths {
+	width: 30%;
+}
+
+.lap--seven-tenths {
+	width: 70%;
+}
+
+.lap--nine-tenths {
+	width: 90%;
+}
+
+.lap--one-twelfth {
+	width: 8.333%;
+}
+
+.lap--five-twelfths {
+	width: 41.666%;
+}
+
+.lap--seven-twelfths {
+	width: 58.333%;
+}
+
+.lap--eleven-twelfths {
+	width: 91.666%;
+}
+
+.lap--hide {
+	display: none !important;
+}
+
+}
+
+@media only screen and (min-width: 1024px) {
+
+.desk--one-whole {
+	width: 100%;
+}
+
+.desk--one-half {
+	width: 50%;
+}
+
+.desk--one-third {
+	width: 33.333%;
+}
+
+.desk--two-thirds {
+	width: 66.666%;
+}
+
+.desk--one-quarter {
+	width: 25%;
+}
+
+.desk--three-quarters {
+	width: 75%;
+}
+
+.desk--one-fifth {
+	width: 20%;
+}
+
+.desk--two-fifths {
+	width: 40%;
+}
+
+.desk--three-fifths {
+	width: 60%;
+}
+
+.desk--four-fifths {
+	width: 80%;
+}
+
+.desk--one-sixth {
+	width: 16.666%;
+}
+
+.desk--five-sixths {
+	width: 83.333%;
+}
+
+.desk--one-seventh {
+	width: 14.28571%;
+}
+
+.desk--one-eighth {
+	width: 12.5%;
+}
+
+.desk--three-eighths {
+	width: 37.5%;
+}
+
+.desk--five-eighths {
+	width: 62.5%;
+}
+
+.desk--seven-eighths {
+	width: 87.5%;
+}
+
+.desk--one-ninth {
+	width: 11.11111%;
+}
+
+.desk--one-tenth {
+	width: 10%;
+}
+
+.desk--three-tenths {
+	width: 30%;
+}
+
+.desk--seven-tenths {
+	width: 70%;
+}
+
+.desk--nine-tenths {
+	width: 90%;
+}
+
+.desk--one-twelfth {
+	width: 8.333%;
+}
+
+.desk--five-twelfths {
+	width: 41.666%;
+}
+
+.desk--seven-twelfths {
+	width: 58.333%;
+}
+
+.desk--eleven-twelfths {
+	width: 91.666%;
+}
+
+.desk--hide {
+	display: none !important;
+}
+
+}
+
+@media only screen and (max-width: 1380px) {
+
+.epsilon--one-whole {
+	width: 100%;
+}
+
+.epsilon--one-half {
+	width: 50%;
+}
+
+.epsilon--one-third {
+	width: 33.333%;
+}
+
+.epsilon--two-thirds {
+	width: 66.666%;
+}
+
+.epsilon--one-quarter {
+	width: 25%;
+}
+
+.epsilon--three-quarters {
+	width: 75%;
+}
+
+.epsilon--one-fifth {
+	width: 20%;
+}
+
+.epsilon--two-fifths {
+	width: 40%;
+}
+
+.epsilon--three-fifths {
+	width: 60%;
+}
+
+.epsilon--four-fifths {
+	width: 80%;
+}
+
+.epsilon--one-sixth {
+	width: 16.666%;
+}
+
+.epsilon--five-sixths {
+	width: 83.333%;
+}
+
+.epsilon--one-seventh {
+	width: 14.28571%;
+}
+
+.epsilon--one-eighth {
+	width: 12.5%;
+}
+
+.epsilon--three-eighths {
+	width: 37.5%;
+}
+
+.epsilon--five-eighths {
+	width: 62.5%;
+}
+
+.epsilon--seven-eighths {
+	width: 87.5%;
+}
+
+.epsilon--one-ninth {
+	width: 11.11111%;
+}
+
+.epsilon--one-tenth {
+	width: 10%;
+}
+
+.epsilon--three-tenths {
+	width: 30%;
+}
+
+.epsilon--seven-tenths {
+	width: 70%;
+}
+
+.epsilon--nine-tenths {
+	width: 90%;
+}
+
+.epsilon--one-twelfth {
+	width: 8.333%;
+}
+
+.epsilon--five-twelfths {
+	width: 41.666%;
+}
+
+.epsilon--seven-twelfths {
+	width: 58.333%;
+}
+
+.epsilon--eleven-twelfths {
+	width: 91.666%;
+}
+
+.epsilon--hide {
+	display: none !important;
+}
+
+}
+
+@media only screen and (max-width: 1023px) {
+
+.portable--one-whole {
+	width: 100%;
+}
+
+.portable--one-half {
+	width: 50%;
+}
+
+.portable--one-third {
+	width: 33.333%;
+}
+
+.portable--two-thirds {
+	width: 66.666%;
+}
+
+.portable--one-quarter {
+	width: 25%;
+}
+
+.portable--three-quarters {
+	width: 75%;
+}
+
+.portable--one-fifth {
+	width: 20%;
+}
+
+.portable--two-fifths {
+	width: 40%;
+}
+
+.portable--three-fifths {
+	width: 60%;
+}
+
+.portable--four-fifths {
+	width: 80%;
+}
+
+.portable--one-sixth {
+	width: 16.666%;
+}
+
+.portable--five-sixths {
+	width: 83.333%;
+}
+
+.portable--one-seventh {
+	width: 14.28571%;
+}
+
+.portable--one-eighth {
+	width: 12.5%;
+}
+
+.portable--three-eighths {
+	width: 37.5%;
+}
+
+.portable--five-eighths {
+	width: 62.5%;
+}
+
+.portable--seven-eighths {
+	width: 87.5%;
+}
+
+.portable--one-ninth {
+	width: 11.11111%;
+}
+
+.portable--one-tenth {
+	width: 10%;
+}
+
+.portable--three-tenths {
+	width: 30%;
+}
+
+.portable--seven-tenths {
+	width: 70%;
+}
+
+.portable--nine-tenths {
+	width: 90%;
+}
+
+.portable--one-twelfth {
+	width: 8.333%;
+}
+
+.portable--five-twelfths {
+	width: 41.666%;
+}
+
+.portable--seven-twelfths {
+	width: 58.333%;
+}
+
+.portable--eleven-twelfths {
+	width: 91.666%;
+}
+
+.portable--hide {
+	display: none !important;
+}
+
+}
+
+@media only screen and (max-width: 840px) {
+
+.delta--one-whole {
+	width: 100%;
+}
+
+.delta--one-half {
+	width: 50%;
+}
+
+.delta--one-third {
+	width: 33.333%;
+}
+
+.delta--two-thirds {
+	width: 66.666%;
+}
+
+.delta--one-quarter {
+	width: 25%;
+}
+
+.delta--three-quarters {
+	width: 75%;
+}
+
+.delta--one-fifth {
+	width: 20%;
+}
+
+.delta--two-fifths {
+	width: 40%;
+}
+
+.delta--three-fifths {
+	width: 60%;
+}
+
+.delta--four-fifths {
+	width: 80%;
+}
+
+.delta--one-sixth {
+	width: 16.666%;
+}
+
+.delta--five-sixths {
+	width: 83.333%;
+}
+
+.delta--one-seventh {
+	width: 14.28571%;
+}
+
+.delta--one-eighth {
+	width: 12.5%;
+}
+
+.delta--three-eighths {
+	width: 37.5%;
+}
+
+.delta--five-eighths {
+	width: 62.5%;
+}
+
+.delta--seven-eighths {
+	width: 87.5%;
+}
+
+.delta--one-ninth {
+	width: 11.11111%;
+}
+
+.delta--one-tenth {
+	width: 10%;
+}
+
+.delta--three-tenths {
+	width: 30%;
+}
+
+.delta--seven-tenths {
+	width: 70%;
+}
+
+.delta--nine-tenths {
+	width: 90%;
+}
+
+.delta--one-twelfth {
+	width: 8.333%;
+}
+
+.delta--five-twelfths {
+	width: 41.666%;
+}
+
+.delta--seven-twelfths {
+	width: 58.333%;
+}
+
+.delta--eleven-twelfths {
+	width: 91.666%;
+}
+
+.delta--hide {
+	display: none !important;
+}
+
+}
+
+@media only screen and (max-width: 720px) {
+
+.gamma--one-whole {
+	width: 100%;
+}
+
+.gamma--one-half {
+	width: 50%;
+}
+
+.gamma--one-third {
+	width: 33.333%;
+}
+
+.gamma--two-thirds {
+	width: 66.666%;
+}
+
+.gamma--one-quarter {
+	width: 25%;
+}
+
+.gamma--three-quarters {
+	width: 75%;
+}
+
+.gamma--one-fifth {
+	width: 20%;
+}
+
+.gamma--two-fifths {
+	width: 40%;
+}
+
+.gamma--three-fifths {
+	width: 60%;
+}
+
+.gamma--four-fifths {
+	width: 80%;
+}
+
+.gamma--one-sixth {
+	width: 16.666%;
+}
+
+.gamma--five-sixths {
+	width: 83.333%;
+}
+
+.gamma--one-seventh {
+	width: 14.28571%;
+}
+
+.gamma--one-eighth {
+	width: 12.5%;
+}
+
+.gamma--three-eighths {
+	width: 37.5%;
+}
+
+.gamma--five-eighths {
+	width: 62.5%;
+}
+
+.gamma--seven-eighths {
+	width: 87.5%;
+}
+
+.gamma--one-ninth {
+	width: 11.11111%;
+}
+
+.gamma--one-tenth {
+	width: 10%;
+}
+
+.gamma--three-tenths {
+	width: 30%;
+}
+
+.gamma--seven-tenths {
+	width: 70%;
+}
+
+.gamma--nine-tenths {
+	width: 90%;
+}
+
+.gamma--one-twelfth {
+	width: 8.333%;
+}
+
+.gamma--five-twelfths {
+	width: 41.666%;
+}
+
+.gamma--seven-twelfths {
+	width: 58.333%;
+}
+
+.gamma--eleven-twelfths {
+	width: 91.666%;
+}
+
+.gamma--hide {
+	display: none !important;
+}
+
+}
+
+@media only screen and (max-width: 600px) {
+
+.palm--one-whole {
+	width: 100%;
+}
+
+.palm--one-half {
+	width: 50%;
+}
+
+.palm--one-third {
+	width: 33.333%;
+}
+
+.palm--two-thirds {
+	width: 66.666%;
+}
+
+.palm--one-quarter {
+	width: 25%;
+}
+
+.palm--three-quarters {
+	width: 75%;
+}
+
+.palm--one-fifth {
+	width: 20%;
+}
+
+.palm--two-fifths {
+	width: 40%;
+}
+
+.palm--three-fifths {
+	width: 60%;
+}
+
+.palm--four-fifths {
+	width: 80%;
+}
+
+.palm--one-sixth {
+	width: 16.666%;
+}
+
+.palm--five-sixths {
+	width: 83.333%;
+}
+
+.palm--one-seventh {
+	width: 14.28571%;
+}
+
+.palm--one-eighth {
+	width: 12.5%;
+}
+
+.palm--three-eighths {
+	width: 37.5%;
+}
+
+.palm--five-eighths {
+	width: 62.5%;
+}
+
+.palm--seven-eighths {
+	width: 87.5%;
+}
+
+.palm--one-ninth {
+	width: 11.11111%;
+}
+
+.palm--one-tenth {
+	width: 10%;
+}
+
+.palm--three-tenths {
+	width: 30%;
+}
+
+.palm--seven-tenths {
+	width: 70%;
+}
+
+.palm--nine-tenths {
+	width: 90%;
+}
+
+.palm--one-twelfth {
+	width: 8.333%;
+}
+
+.palm--five-twelfths {
+	width: 41.666%;
+}
+
+.palm--seven-twelfths {
+	width: 58.333%;
+}
+
+.palm--eleven-twelfths {
+	width: 91.666%;
+}
+
+.palm--hide {
+	display: none !important;
+}
+
+}
+
