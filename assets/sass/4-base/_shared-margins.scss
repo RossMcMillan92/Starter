@@ -6,26 +6,32 @@
 /**
  * Base elements
  */
-h1,h2,h3,h4,h5,h6,hgroup,
-ul,ol,dl,
+
 blockquote,p,address,
+ul,ol,dd,
 table,
 fieldset,figure,
 pre,
+hr,
 /**
  * Objects and abstractions
  */
-.mb1,
+ .landmark,
 .media{
+	margin-top: 0;
     margin-bottom:rem($base-spacing-unit);
+}
+
+h1,h2,h3,h4,h5,h6,hgroup{
+	margin-top: 0;
+    margin-bottom:rem($base-spacing-unit / 2);
 }
 
 
 /**
  * Doubled up `margin-bottom` helper class.
  */
-.landmark,
-.mb2{
+.landmark{
     margin-bottom: rem(2 * $base-spacing-unit);
 }
 
@@ -44,5 +50,7 @@ hr{
  * by a consistent amount. Define that amount once, here.
  */
 ul,ol,dd{
-    margin-left: rem(2 * $base-spacing-unit);
+    margin-left: rem($base-spacing-unit);
+    margin-bottom:rem(3 * $base-spacing-unit);
 }
+

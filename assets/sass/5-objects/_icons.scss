@@ -27,31 +27,38 @@
 
     -moz-osx-font-smoothing: grayscale;
 
-    position: relative;
     display: inline-block;
     line-height: 1;
 
     font-family: $base-font-family--icons;
     vertical-align: baseline;
-    left: 0;
 }
 
 $icon-names: (
     'search',
     'menu',
-    'youtube',
-    'facebook',
+    'marker',
+    'phone',
     'twitter',
-    'mail',
-    'arrow-left',
+    'facebook',
+    'flickr',
     'arrow-down',
-    'arrow-up',
+    'arrow-left',
     'arrow-right',
-    'instagram',
+    'arrow-up',
+    'share',
+    'fax',
+    'eye',
+    'mail',
+    'youtube',
+    'cross'
 );
 
 $icon-chars: (
     '\e600',
+    '\e9bd',
+    '\e947',
+    '\f095',
     '\e601',
     '\e602',
     '\e603',
@@ -60,8 +67,11 @@ $icon-chars: (
     '\e606',
     '\e607',
     '\e608',
+    '\e034',
     '\e609',
-    '\f16d',
+    '\e60a',
+    '\e60b',
+    '\e60c'
 );
 
 
@@ -81,3 +91,4 @@ $icon-chars: (
         @extend %icon-preload;
     }
 }
+
