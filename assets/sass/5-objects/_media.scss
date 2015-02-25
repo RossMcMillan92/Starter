@@ -23,6 +23,10 @@
     .media__img{
         float:left;
         margin-right:rem($base-spacing-unit);
+
+        &.half-spaced{
+            margin-right:rem($base-spacing-unit / 2);
+        }
     }
     /**
      * Reversed image location (right instead of left).
@@ -30,6 +34,10 @@
     .media__img--rev{
         float:right;
         margin-left:rem($base-spacing-unit);
+
+        &.half-spaced{
+            margin-left:rem($base-spacing-unit / 2);
+        }
     }
 
         .media__img img,

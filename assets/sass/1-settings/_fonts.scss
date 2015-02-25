@@ -1,12 +1,12 @@
-$base-font-size: 		15px;
-$base-line-height: 		1.4;
+$base-font-size: 		16px;
+$base-line-height: 		1.6;
 
 $mega-size: 			55px;
-$kilo-size:      	   	30px;
+$kilo-size:      	   	28px;
 
-$h1-size:        	   37px; 
-$h2-size:        	   28px; 
-$h3-size:        	   23px; 
+$h1-size:        	   50px; 
+$h2-size:        	   25px; 
+$h3-size:        	   20px; 
 $h4-size:        	   17px; 
 $h5-size:        	   15px; 
 $h6-size:      	  	   13px; 
@@ -14,8 +14,8 @@ $h6-size:      	  	   13px;
 $milli-size:   		    12px;
 $micro-size:   		    10px;
 
-$base-ui-color:  	   	#eeeeee;
+$base-ui-color:  	   	$palette--grey-med;
 
-$base-font-family: 				'Regular', sans-serif;
+$base-font-family: 				'Roboto', sans-serif;
 $base-font-family--secondary:	$base-font-family;
 $base-font-family--icons: 		'icomoon';

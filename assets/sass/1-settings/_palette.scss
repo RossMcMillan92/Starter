@@ -1,8 +1,8 @@
-$palette--black 				:#000;
+$palette--black 				:#373737;
 
-$palette--grey-light 			:#eeeeee;
-$palette--grey-med 				:#bdbdbd;
-$palette--grey-dark 			:#1b1a1a;
+$palette--grey-light 			:#fbfbfb;
+$palette--grey-med 				:#f5f5f5;
+$palette--grey-dark 			:#C2C2C2;
 
 /* names allow us to loop and create class names, e.g. .card--alpha, .ui--beta
 ------------------------ */
@@ -10,14 +10,28 @@ $palette--names 				:(
 									'alpha',
 									'beta',
 									'gamma',
-									'delta'
+									'delta',
+
+									'black',
+									'grey-light',
+									'grey-med',
+									'grey-dark',
+
+									'white'
 								);
 
 $palette--primary 				:(
-									#fb5354, // Red 	- Alpha	- 1
-									#ffcb47, // Yellow 	- Beta 	- 2
-									#54dd5f, // Green 	- Gamma - 3
-									#00bcde // 	Blue 	- Delta - 4
+									#bf1b60, // Pink 	- Alpha	- 1
+									#023977, // Blue 	- Beta 	- 2
+									#be955a, // Beige 	- Gamma - 3
+									#00bcde, //	Blue 	- Delta - 4
+
+									#373737, // black		- 5
+									#fbfbfb, // grey-light 	- 6
+									#f5f5f5, // grey-med 	- 7
+									#C2C2C2, //	grey-dark 	- 8
+
+									#fff 	 // white  		- 9
 								); 
 
 $palette--social 				:(
@@ -30,6 +44,8 @@ $palette--social 				:(
 								);
 
 $palette--body-bg 				: #fff;
-$palette--body-text 			: #010103;
+$palette--body-text 			: #747474;
 $palette--body-emphasised 		:nth($palette--primary, 1);
 
+// misc
+$palette--beta-text 			: #b9c9db;

@@ -1,5 +1,5 @@
 @mixin respond-min($width) {
-	@media screen and (min-width: $width) {
+	@media screen and (min-width: $width + 1px) {
 		@content;
 	}
 }

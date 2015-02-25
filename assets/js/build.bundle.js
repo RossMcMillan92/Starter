@@ -4,36 +4,6 @@
 =====================================*/
 if (!window.console) console = {log: function() {}};
 
-if (!Array.prototype.indexOf)
-{
-  Array.prototype.indexOf = function(elt /*, from*/)
-  {
-    var len = this.length >>> 0;
-
-    var from = Number(arguments[1]) || 0;
-    from = (from < 0)
-         ? Math.ceil(from)
-         : Math.floor(from);
-    if (from < 0)
-      from += len;
-
-    for (; from < len; from++)
-    {
-      if (from in this &&
-          this[from] === elt)
-        return from;
-    }
-    return -1;
-  };
-};
-
-
-if (!String.prototype.trim) {
-  String.prototype.trim = function () {
-    return this.replace(/^\s+|\s+$/g, '');
-  };
-};
-
 /*! @source http://purl.eligrey.com/github/classList.js/blob/master/classList.js*/
 ;if("document" in self&&!("classList" in document.createElement("_"))){(function(j){"use strict";if(!("Element" in j)){return}var a="classList",f="prototype",m=j.Element[f],b=Object,k=String[f].trim||function(){return this.replace(/^\s+|\s+$/g,"")},c=Array[f].indexOf||function(q){var p=0,o=this.length;for(;p<o;p++){if(p in this&&this[p]===q){return p}}return -1},n=function(o,p){this.name=o;this.code=DOMException[o];this.message=p},g=function(p,o){if(o===""){throw new n("SYNTAX_ERR","An invalid or illegal string was specified")}if(/\s/.test(o)){throw new n("INVALID_CHARACTER_ERR","String contains an invalid character")}return c.call(p,o)},d=function(s){var r=k.call(s.getAttribute("class")||""),q=r?r.split(/\s+/):[],p=0,o=q.length;for(;p<o;p++){this.push(q[p])}this._updateClassName=function(){s.setAttribute("class",this.toString())}},e=d[f]=[],i=function(){return new d(this)};n[f]=Error[f];e.item=function(o){return this[o]||null};e.contains=function(o){o+="";return g(this,o)!==-1};e.add=function(){var s=arguments,r=0,p=s.length,q,o=false;do{q=s[r]+"";if(g(this,q)===-1){this.push(q);o=true}}while(++r<p);if(o){this._updateClassName()}};e.remove=function(){var t=arguments,s=0,p=t.length,r,o=false;do{r=t[s]+"";var q=g(this,r);if(q!==-1){this.splice(q,1);o=true}}while(++s<p);if(o){this._updateClassName()}};e.toggle=function(p,q){p+="";var o=this.contains(p),r=o?q!==true&&"remove":q!==false&&"add";if(r){this[r](p)}return !o};e.toString=function(){return this.join(" ")};if(b.defineProperty){var l={get:i,enumerable:true,configurable:true};try{b.defineProperty(m,a,l)}catch(h){if(h.number===-2146823252){l.enumerable=false;b.defineProperty(m,a,l)}}}else{if(b[f].__defineGetter__){m.__defineGetter__(a,i)}}}(self))};
 
@@ -45,9 +15,6 @@ if (!String.prototype.trim) {
 // Fixes from Paul Irish, Tino Zijdel, Andrew Mao, Klemen Slavič, Darius Bacon
 
 // MIT license
-
-if (!Date.now)
-    Date.now = function() { return new Date().getTime(); };
 
 (function() {
     'use strict';
@@ -137,6 +104,8 @@ Slider = (function(){
 	Slider = function(element, options){
 		var self = this;
 
+		if(element === null) return;
+
 		self.options = {
 			fadeTime: .5,
 
@@ -182,27 +151,37 @@ Slider = (function(){
 
 	Slider.prototype._bindControls = function() {
 		var self = this;
+	
+		function eventLeft(e){
+			e.preventDefault();
+			gotoSlide({'scroll': -1})
+		}
+		function eventRight(e){
+			e.preventDefault();
+			gotoSlide({'scroll': 1})
+		}
+		function eventRadio(e){
+			e.preventDefault();
+			var target = this.getAttribute('data-target_slide');
+			gotoSlide({'target': target}, this)
+		}
 
 		if(self.$controlLeft.length){
-			Tools.bind(self.$controlLeft,'click', function(e){
-				e.preventDefault();
-				gotoSlide({'scroll': -1})
-			});
+			for (var i = self.$controlLeft.length - 1; i >= 0; i--) {
+				self.$controlLeft[i].addEventListener('click', eventLeft, false);
+			};
 		}
 
 		if(self.$controlRight.length){
-			Tools.bind(self.$controlRight,'click', function(e){
-				e.preventDefault();
-				gotoSlide({'scroll': 1})
-			});
+			for (var i = self.$controlRight.length - 1; i >= 0; i--) {
+				self.$controlRight[i].addEventListener('click', eventRight, false);
+			};
 		}
 
 		if(self.$radios.length){
-			Tools.bind(self.$radios,'click', function(e){
-				e.preventDefault();
-				var target = this.getAttribute('data-target_slide');
-				gotoSlide({'target': target}, this)
-			});
+			for (var i = self.$radios.length - 1; i >= 0; i--) {
+				self.$radios[i].addEventListener('click', eventRadio, false);
+			};
 		}
 
 		function gotoSlide(target, radio){
@@ -272,45 +251,16 @@ Slider = (function(){
 	};
 
     return {
-    	init: function(selector, options){
-    		return new Slider(selector, options)
+    	init: function(element, options){
+    		return new Slider(element, options)
     	}
     };
 })();
 
 module.exports = Slider;
 },{"./tools.js":3}],3:[function(require,module,exports){
-
 var Tools = {};
 
-// quick binding fallback for ie
-Tools.bind = function(elem, type, func, useCapture){
-	elems = typeof elem[0] === "undefined" ? [elem] : elem;
-	useCapture = typeof useCapture === "undefined" ? false : useCapture;
-
-	for (var i = elems.length - 1; i >= 0; i--) {
-		var elem = elems[i];
-		if(typeof elem === "undefined") continue;
-
-		if(document.addEventListener){ 
-			elem.addEventListener(type, function(e){
-				func.apply(this, [e]);
-			}, useCapture)
-	    } else {
-	        elem.attachEvent('on'+type, function(e){
-				func.apply(elem, [e]);
-	        });
-	    }
-	};
-}
-
-Tools.stopPropagation = function(e){
-	if (e.stopPropagation) e.stopPropagation(); 
-	else e.cancelBubble = true;
-}
-Tools.preventDefault = function(e){
-	e.preventDefault ? e.preventDefault() : e.returnValue = false;
-}
 
 Tools.getParent = function(elem, className){
 	var parentEl = false,
@@ -329,19 +279,6 @@ Tools.getParent = function(elem, className){
 	}
 
 	return false;
-}
-
-Tools.clickClass = function(elem, targets, className){
-	if(elem == null) return;
-	Tools.bind(elem, 'click', function(e, self){
-		e.preventDefault();
-		targets = (typeof targets[0] === "undefined") ? [targets] : targets;
-		for (var i = targets.length - 1; i >= 0; i--) {
-			var target = targets[i] === "this" ? elem : targets[i];
-
-			target.classList.toggle(className);
-		};
-	})
 }
 
 Tools.getQueryVariable = function(url, variable)

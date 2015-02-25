@@ -17,13 +17,15 @@ h6,.zeta{
     font-size: $h6-size;
 }
 
+h1, h2, h3, h4, h5, h6 {
+	line-height: 1.4;
+}
+
 
 .title--primary{
     @extend %f-extrabold;
-    text-transform: uppercase;
 }
 
 .title--secondary{
-    @extend %f-regular;
-    text-transform: uppercase;
+    @extend %f-light;
 }
