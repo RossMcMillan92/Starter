@@ -1,4 +1,4 @@
-# AD Starter Template
+# Starter Template
 
 ## Gulp
 ### Setup
