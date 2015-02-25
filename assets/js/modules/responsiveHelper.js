@@ -25,7 +25,7 @@ var Tools = require('./tools.js'),
             self.nameMap = []
             self.curInt = 0
 
-            Tools.bind(window, 'resize', function(){
+            window.addEventListener('resize', function(){
             	self._resize.apply(self);
             })
         };

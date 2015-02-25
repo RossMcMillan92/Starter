@@ -1,34 +1,5 @@
-
 var Tools = {};
 
-// quick binding fallback for ie
-Tools.bind = function(elem, type, func, useCapture){
-	elems = typeof elem[0] === "undefined" ? [elem] : elem;
-	useCapture = typeof useCapture === "undefined" ? false : useCapture;
-
-	for (var i = elems.length - 1; i >= 0; i--) {
-		var elem = elems[i];
-		if(typeof elem === "undefined") continue;
-
-		if(document.addEventListener){ 
-			elem.addEventListener(type, function(e){
-				func.apply(this, [e]);
-			}, useCapture)
-	    } else {
-	        elem.attachEvent('on'+type, function(e){
-				func.apply(elem, [e]);
-	        });
-	    }
-	};
-}
-
-Tools.stopPropagation = function(e){
-	if (e.stopPropagation) e.stopPropagation(); 
-	else e.cancelBubble = true;
-}
-Tools.preventDefault = function(e){
-	e.preventDefault ? e.preventDefault() : e.returnValue = false;
-}
 
 Tools.getParent = function(elem, className){
 	var parentEl = false,
@@ -47,19 +18,6 @@ Tools.getParent = function(elem, className){
 	}
 
 	return false;
-}
-
-Tools.clickClass = function(elem, targets, className){
-	if(elem == null) return;
-	Tools.bind(elem, 'click', function(e, self){
-		e.preventDefault();
-		targets = (typeof targets[0] === "undefined") ? [targets] : targets;
-		for (var i = targets.length - 1; i >= 0; i--) {
-			var target = targets[i] === "this" ? elem : targets[i];
-
-			target.classList.toggle(className);
-		};
-	})
 }
 
 Tools.getQueryVariable = function(url, variable)

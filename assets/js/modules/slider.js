@@ -23,6 +23,8 @@ Slider = (function(){
 	Slider = function(element, options){
 		var self = this;
 
+		if(element === null) return;
+
 		self.options = {
 			fadeTime: .5,
 
@@ -68,27 +70,37 @@ Slider = (function(){
 
 	Slider.prototype._bindControls = function() {
 		var self = this;
+	
+		function eventLeft(e){
+			e.preventDefault();
+			gotoSlide({'scroll': -1})
+		}
+		function eventRight(e){
+			e.preventDefault();
+			gotoSlide({'scroll': 1})
+		}
+		function eventRadio(e){
+			e.preventDefault();
+			var target = this.getAttribute('data-target_slide');
+			gotoSlide({'target': target}, this)
+		}
 
 		if(self.$controlLeft.length){
-			Tools.bind(self.$controlLeft,'click', function(e){
-				e.preventDefault();
-				gotoSlide({'scroll': -1})
-			});
+			for (var i = self.$controlLeft.length - 1; i >= 0; i--) {
+				self.$controlLeft[i].addEventListener('click', eventLeft, false);
+			};
 		}
 
 		if(self.$controlRight.length){
-			Tools.bind(self.$controlRight,'click', function(e){
-				e.preventDefault();
-				gotoSlide({'scroll': 1})
-			});
+			for (var i = self.$controlRight.length - 1; i >= 0; i--) {
+				self.$controlRight[i].addEventListener('click', eventRight, false);
+			};
 		}
 
 		if(self.$radios.length){
-			Tools.bind(self.$radios,'click', function(e){
-				e.preventDefault();
-				var target = this.getAttribute('data-target_slide');
-				gotoSlide({'target': target}, this)
-			});
+			for (var i = self.$radios.length - 1; i >= 0; i--) {
+				self.$radios[i].addEventListener('click', eventRadio, false);
+			};
 		}
 
 		function gotoSlide(target, radio){
@@ -158,8 +170,8 @@ Slider = (function(){
 	};
 
     return {
-    	init: function(selector, options){
-    		return new Slider(selector, options)
+    	init: function(element, options){
+    		return new Slider(element, options)
     	}
     };
 })();

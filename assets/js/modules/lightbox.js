@@ -10,6 +10,7 @@ var Lightbox = module.exports = (function(){
 			Tools = require('./tools'),
 
 			$lightbox,
+			$lightbox__bgclose,
 			$lightbox__content,
 			$lightbox__close,
 
@@ -22,11 +23,13 @@ var Lightbox = module.exports = (function(){
 			if(isBuilt) return false;
 
 			var $$lightbox = document.createElement('div'),
+				$$lightbox__bgclose = document.createElement('div'),
 				$$lightbox__wrapper = document.createElement('div'),
 				$$lightbox__content = document.createElement('div'),
 				$$lightbox__close = document.createElement('div');
 
 			$$lightbox.className = 'lightbox';
+			$$lightbox__bgclose.className = 'lightbox__bgclose';
 			$$lightbox__wrapper.className = 'lightbox__wrapper';
 			$$lightbox__content.className = 'lightbox__content';
 			$$lightbox__close.className = 'lightbox__close';
@@ -36,11 +39,13 @@ var Lightbox = module.exports = (function(){
 			$$lightbox__wrapper.appendChild($$lightbox__content);
 			$$lightbox__wrapper.appendChild($$lightbox__close);
 
+			$$lightbox.appendChild($$lightbox__bgclose);
 			$$lightbox.appendChild($$lightbox__wrapper);
 
 			document.body.appendChild($$lightbox);
 
 			$lightbox = $$lightbox;
+			$lightbox__bgclose = $$lightbox__bgclose;
 			$lightbox__content = $$lightbox__content;
 			$lightbox__close = $$lightbox__close;
 
@@ -51,7 +56,8 @@ var Lightbox = module.exports = (function(){
 		}
 
 		function _bindings(){
-			Tools.bind($lightbox__close,'click', _destroy);
+			$lightbox__bgclose.addEventListener('click', _destroy);
+			$lightbox__close.addEventListener('click', _destroy);
 		}
 
 		function _insertData(data){
@@ -62,8 +68,11 @@ var Lightbox = module.exports = (function(){
 		function _show(){
 			// set classes
 			$lightbox.classList.remove('is-hidden');
-			$lightbox.classList.add('is-visible');
 			$body.classList.add('lightbox-is-active');
+
+			setTimeout(function(){
+				$lightbox.classList.add('is-visible');
+			}, 0)
 
 			isHidden = false
 			return true;
