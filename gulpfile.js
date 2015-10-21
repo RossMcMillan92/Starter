@@ -4,12 +4,10 @@ var gulp = require('gulp'),
     config = require('./gulp/config');
 
 // sass/css plugins
-plugins.sass = require('gulp-ruby-sass');
+plugins.sass = require('gulp-sass');
 plugins.sourcemaps = require('gulp-sourcemaps');
 plugins.autoprefixer = require('gulp-autoprefixer');
 plugins.minifycss = require('gulp-minify-css');
-plugins.pixrem = require('gulp-pixrem');
-plugins.cmq = require('gulp-combine-media-queries');
 
 // js plugins
 plugins.browserify = require('gulp-browserify');
@@ -22,8 +20,7 @@ plugins.concat = require('gulp-concat');
 plugins.rename = require('gulp-rename');
 plugins.notify = require('gulp-notify');
 plugins.del = require('del');
-plugins.browserSync = require('browser-sync');
-plugins.reload      = plugins.browserSync.reload;
+plugins.livereload = require('gulp-livereload');
 
 // allows us to grab task functions from folder
 function getTask(task) {
@@ -37,10 +34,8 @@ if (config.sass.isEnabled) {
 if (config.js.isEnabled) {
 	gulp.task('scripts', getTask('scripts'));
 };
-if (config.browserSync.isEnabled) {
-	gulp.task('browser-sync', getTask('browserSync'));
-};
 if (config.watch.isEnabled) {
+	plugins.livereload.listen();
 	gulp.task('watch', getTask('watch'));
 };
 gulp.task('no-fn', function(){ return false; });
@@ -50,7 +45,6 @@ gulp.task('default', function(){
 	gulp.start(
 		(config.sass.isEnabled ? 'styles' : 'no-fn'), 
 		(config.js.isEnabled ? 'scripts' : 'no-fn'), 
-		(config.browserSync.isEnabled ? 'browser-sync' : 'no-fn'), 
 		(config.watch.isEnabled ? 'watch' : 'no-fn')
 	);
 });

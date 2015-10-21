@@ -4,17 +4,6 @@
 ---------------------- */
 
 config = {
-	
-	/* -----------------------
-	// BrowserSync
-	----------------------- */
-	browserSync: {
-		isEnabled: true,
-
-		devSiteURL: 'ad.dev', // used for BrowserSync
-		cssAutoreload: true,
-	},
-
 	/* -----------------------
 	// JS build
 	// Takes multiple input files (polyfills and main script)
@@ -23,9 +12,9 @@ config = {
 	js: {
 		isEnabled: true,
 
-		fileNames: [ 'modules/polyfills', 'script' ], // Array of file names
-		path: './assets/js',
-		outputName: 'build', // what the final build will be called  (e.g. 'build.bundle.min.js')
+		fileNames: [ 'script' ], // Array of file names
+		path: './_themes/scotpulse2015/assets/src/scripts',
+		outputPath: './_themes/scotpulse2015/assets/build/scripts', 
 
 		minification: {
 			isEnabled: true,
@@ -34,7 +23,6 @@ config = {
 
 		browserify: {
 			isEnabled: true,
-			suffix: 'bundle'
 		}
 	},
 
@@ -47,8 +35,8 @@ config = {
 		isEnabled: true,
 
 		masterFileName: 'master',
-		path: './assets/sass',
-		outputPath: './assets/css', 
+		path: './_themes/scotpulse2015/assets/src/styles',
+		outputPath: './_themes/scotpulse2015/assets/build/styles', 
 
 		minification: {
 			isEnabled: true,
@@ -56,7 +44,6 @@ config = {
 		},
 	
 		// misc css settings
-		baseFontSize: '15px', // for pixrem
 		autoPrefixerBrowsers: ['last 2 version', 'ie 8', 'ie 9', 'ios 6', 'android 4'], // for auto prefixer
 	},
 
