@@ -10,7 +10,8 @@ plugins.autoprefixer = require('gulp-autoprefixer');
 plugins.minifycss = require('gulp-minify-css');
 
 // js plugins
-plugins.browserify = require('gulp-browserify');
+plugins.browserify = require('browserify');
+plugins.babel = require('gulp-babel');
 plugins.uglify = require('gulp-uglify');
 
 // misc plugins
@@ -21,6 +22,8 @@ plugins.rename = require('gulp-rename');
 plugins.notify = require('gulp-notify');
 plugins.del = require('del');
 plugins.livereload = require('gulp-livereload');
+plugins.source = require('vinyl-source-stream');
+plugins.buffer = require('vinyl-buffer')
 
 // allows us to grab task functions from folder
 function getTask(task) {

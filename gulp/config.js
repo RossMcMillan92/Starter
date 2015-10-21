@@ -12,17 +12,13 @@ config = {
 	js: {
 		isEnabled: true,
 
-		fileNames: [ 'script' ], // Array of file names
+		fileName: 'script', // Array of file names
 		path: './_themes/scotpulse2015/assets/src/scripts',
 		outputPath: './_themes/scotpulse2015/assets/build/scripts', 
 
 		minification: {
 			isEnabled: true,
 			suffix: 'min'
-		},
-
-		browserify: {
-			isEnabled: true,
 		}
 	},
 
